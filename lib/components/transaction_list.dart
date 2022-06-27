@@ -13,13 +13,15 @@ class TransactionList extends StatelessWidget {
       height: 300,
       child: transactions.isEmpty
 //////////////// mostrará caso não tenha nenhuma transação
-          ? Column( 
+          ? Column(
               children: <Widget>[
                 Text(
                   'Nenhuma Transação Cadastrada!',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                SizedBox(height: 20), // dá espaço entre o texto e o container (imagem nesse caso)
+                SizedBox(
+                    height:
+                        20), // dá espaço entre o texto e o container (imagem nesse caso)
                 Container(
                   height: 200,
                   child: Image.asset(
@@ -30,7 +32,7 @@ class TransactionList extends StatelessWidget {
               ],
             )
 //////////////// caso contrário. mostrará as novas transações
-          : ListView.builder( 
+          : ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (ctx, index) {
                 final tr = transactions[index];
