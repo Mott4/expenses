@@ -15,9 +15,25 @@ class Chart extends StatelessWidget {
         Duration(days: index),
       );
 
+////// fazer soma de valor acima de 9.99 encima do que foi passado dentro de recentTransaction
+      double totalSum = 0.0;
+
+      for(var i = 0; i < recentTransaction.length; i++) {
+        bool sameDay = recentTransaction[i].date.day == weekDay.day;
+        bool sameMonth = recentTransaction[i].date.month == weekDay.month;
+        bool sameYear = recentTransaction[i].date.year == weekDay.year;
+      
+        if(sameDay && sameMonth && sameYear) {
+          totalSum += recentTransaction[i].value;
+        }
+      }
+
+      print(DateFormat.E().format(weekDay)[0]);
+      print(totalSum);
+
       return {
         'day': DateFormat.E().format(weekDay)[0], 
-        'value': 9.99,
+        'value': totalSum, // soma total
       };
       // calcular valor total e identificar qual transação caiu
       // em qual dia da semana
