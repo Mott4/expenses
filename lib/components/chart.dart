@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
-
 // transações recentes
   final List<Transaction> recentTransaction;
 
@@ -11,13 +11,18 @@ class Chart extends StatelessWidget {
 
   List<Map<String, Object>> get groupedTransactions {
     return List.generate(7, (index) {
-      return {'day': 'T', 'value': 9.99 }; 
+      final weekDay = DateTime.now().subtract(
+        Duration(days: index),
+      );
+
+      return {
+        'day': DateFormat.E().format(weekDay)[0], 
+        'value': 9.99,
+      };
       // calcular valor total e identificar qual transação caiu
       // em qual dia da semana
-      
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
