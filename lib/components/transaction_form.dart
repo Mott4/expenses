@@ -57,6 +57,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     child: const Text(
                       'Selecionar Data',
                       style: TextStyle(
+                        fontFamily: 'OpenSans',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -70,8 +71,12 @@ class _TransactionFormState extends State<TransactionForm> {
                 child: Text('Nova Transação'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.purple,
+                  textStyle: TextStyle(
+                    fontFamily: 'OpenSans',
+                  )
                 ),
                 onPressed: _submitForm,
+                
               ),
             ])
           ],
