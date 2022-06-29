@@ -17,8 +17,8 @@ class Chart extends StatelessWidget {
         Duration(days: index),
       );
 
-////// fazer soma de valor acima de 9.99 encima do que foi passado dentro de recentTransaction
       double totalSum = 0.0;
+////// fazer soma de valor acima de 9.99 encima do que foi passado dentro de recentTransaction
 
       for (var i = 0; i < recentTransaction.length; i++) {
         bool sameDay = recentTransaction[i].date.day == weekDay.day;
@@ -36,7 +36,7 @@ class Chart extends StatelessWidget {
       };
       // calcular valor total e identificar qual transação caiu
       // em qual dia da semana
-    });
+    }).reversed.toList();
   }
 
   ///// getter para calcular o total que foi gasto naquela semana //////

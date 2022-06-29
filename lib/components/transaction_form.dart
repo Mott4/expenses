@@ -16,11 +16,11 @@ class _TransactionFormState extends State<TransactionForm> {
   _submitForm() {
     final title = titleController.text;
     final value = double.tryParse(valueController.text) ?? 0.0;
-    
+
     if (title.isEmpty || value <= 0) {
       return;
     }
-    
+
     widget.onSubmit(title, value);
   }
 
@@ -47,18 +47,33 @@ class _TransactionFormState extends State<TransactionForm> {
                 labelText: 'Valor (R\$)',
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  child: const Text('Nova Transação'),
-                  style: TextButton.styleFrom(
-                    primary: Colors.purple,
-                  ),
-                  onPressed: _submitForm(),
+            Container(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  Text('Nenhuma data selecionada!'),
+                  TextButton(
+                    style: TextButton.styleFrom(primary: Colors.purple),
+                    child: const Text(
+                      'Selecionar Data',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              ElevatedButton(
+                child: Text('Nova Transação'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple,
                 ),
-              ]
-            )
+                onPressed: _submitForm,
+              ),
+            ])
           ],
         ),
       ),
