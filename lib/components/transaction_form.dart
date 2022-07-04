@@ -30,7 +30,7 @@ class _TransactionFormState extends State<TransactionForm> {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
+      firstDate: DateTime(2019),
       lastDate: DateTime.now(),
     ).then((pickedDate) {
       if (pickedDate == null) {
@@ -70,9 +70,11 @@ class _TransactionFormState extends State<TransactionForm> {
               height: 70,
               child: Row(
                 children: <Widget>[
-                  Text(
-                    _selectedDate == null ? 'Nenhuma data selecionada!'
-                    : DateFormat('d/M/y').format(_selectedDate!),
+                  Expanded(
+                    child: Text(
+                      _selectedDate == null ? 'Nenhuma data selecionada!'
+                      : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
+                    ),
                   ),
                   TextButton(
                     style: TextButton.styleFrom(primary: Colors.purple),
