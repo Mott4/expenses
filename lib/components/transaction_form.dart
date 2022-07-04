@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class TransactionForm extends StatefulWidget {
   final void Function(String, double, DateTime) onSubmit;
 
-  const TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
+  const TransactionForm(this.onSubmit);
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -26,11 +26,12 @@ class _TransactionFormState extends State<TransactionForm> {
     widget.onSubmit(title, value, _selectedDate!);
   }
 
+////// mostrar o modal de Datas
   _showDatePicker() {
     showDatePicker(
-      context: context,
+      context: context,  
       initialDate: DateTime.now(),
-      firstDate: DateTime(2019),
+      firstDate: DateTime(2021),
       lastDate: DateTime.now(),
     ).then((pickedDate) {
       if (pickedDate == null) {
