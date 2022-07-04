@@ -55,36 +55,36 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
     // lista constante
-    Transaction(
-      id: 't0',
-      title: 'Conta Antiga',
-      value: 400.00,
-      date: DateTime.now().subtract(Duration(days: 33)),
-    ),
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de luz',
-      value: 211.30,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Cartão de Crédito',
-      value: 100211.30,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Lanche',
-      value: 19.46,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't0',
+    //   title: 'Conta Antiga',
+    //   value: 400.00,
+    //   date: DateTime.now().subtract(Duration(days: 33)),
+    // ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Novo Tênis de Corrida',
+    //   value: 310.76,
+    //   date: DateTime.now().subtract(Duration(days: 3)),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Conta de luz',
+    //   value: 211.30,
+    //   date: DateTime.now().subtract(Duration(days: 4)),
+    // ),
+    // Transaction(
+    //   id: 't3',
+    //   title: 'Cartão de Crédito',
+    //   value: 100211.30,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't4',
+    //   title: 'Lanche',
+    //   value: 19.46,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   // criação de getter para passar as transações recentes para o nosso componente
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return _transactions.where((tr) {
         return tr.date.isAfter(DateTime.now().subtract( 
           // pegar data de AGORA
-          Duration(days: 7), 
+          const Duration(days: 7), 
           // subtrair 7 dias 
           // * e se a data for depois de 7 dias atrás, significa q essa transação precisa estar na lista final
         ));
@@ -102,12 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -123,9 +123,10 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return TransactionForm(
-              _addTransaction); //Transaction pede um parâmetro
-        });
+          return TransactionForm(_addTransaction); 
+          //Transaction pede um parâmetro
+        },
+      );
   }
 
   @override

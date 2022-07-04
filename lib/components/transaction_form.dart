@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
-  final void Function(String, double) onSubmit;
+  final void Function(String, double, DateTime) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  const TransactionForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
   State<TransactionForm> createState() => _TransactionFormState();
@@ -13,19 +13,19 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final _titleController = TextEditingController();
   final _valueController = TextEditingController();
-  DateTime? _selectedDate;
+  DateTime? _selectedDate = DateTime.now();
 
   _submitForm() {
     final title = _titleController.text;
     final value = double.tryParse(_valueController.text) ?? 0;
 
-    if (title.isEmpty || value <= 0) {
+    if (title.isEmpty || value <= 0 || _selectedDate == null) {
       return;
     }
 
-    widget.onSubmit(title, value);
+    widget.onSubmit(title, value, _selectedDate!);
   }
-  ////////// modal para selecionar datas
+
   _showDatePicker() {
     showDatePicker(
       context: context,
@@ -44,44 +44,44 @@ class _TransactionFormState extends State<TransactionForm> {
   }
 
   @override
-  Widget  build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Card(
       elevation: 5,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-          children: <Widget>[
+          children: [
             TextField(
               controller: _titleController,
               onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Título',
               ),
             ),
             TextField(
               controller: _valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitForm(),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Valor (R\$)',
               ),
             ),
-            Container(
+            SizedBox(
               height: 70,
               child: Row(
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      _selectedDate == null ? 'Nenhuma data selecionada!'
-                      : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
+                      _selectedDate == null
+                          ? 'Nenhuma data selecionada!'
+                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate!)}',
                     ),
                   ),
                   TextButton(
-                    style: TextButton.styleFrom(primary: Colors.purple),
                     child: const Text(
                       'Selecionar Data',
                       style: TextStyle(
-                        fontFamily: 'OpenSans',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -90,17 +90,20 @@ class _TransactionFormState extends State<TransactionForm> {
                 ],
               ),
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              ElevatedButton(
-                child: Text('Nova Transação'),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
-                    textStyle: TextStyle(
-                      fontFamily: 'OpenSans',
-                    )),
-                onPressed: _submitForm,
-              ),
-            ])
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                ElevatedButton(
+                  child: Text(
+                    'Nova Transação',
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.button?.color,
+                    ),
+                  ),
+                  onPressed: _submitForm,
+                ),
+              ],
+            ),
           ],
         ),
       ),
