@@ -29,10 +29,7 @@ class ExpensesApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
-          button: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.normal
-          ),
+          button: TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
         ),
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
@@ -46,7 +43,7 @@ class ExpensesApp extends StatelessWidget {
     );
   }
 }
- 
+
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -88,19 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   // criação de getter para passar as transações recentes para o nosso componente
-    List<Transaction> get _recentTransactions {
-      return _transactions.where((tr) {
-        return tr.date.isAfter(DateTime.now().subtract( 
-          // pegar data de AGORA
-          const Duration(days: 7), 
-          // subtrair 7 dias 
-          // * e se a data for depois de 7 dias atrás, significa q essa transação precisa estar na lista final
-        ));
-        // se retornar falso, significa que a lista será vazia
-        // se retornar a true, significa que todos os elementos vão ser verdadeiros e irão aparecer na lista final
-      }).toList();
-    }
-
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(
+        // pegar data de AGORA
+        const Duration(days: 7),
+        // subtrair 7 dias
+        // * e se a data for depois de 7 dias atrás, significa q essa transação precisa estar na lista final
+      ));
+      // se retornar falso, significa que a lista será vazia
+      // se retornar a true, significa que todos os elementos vão ser verdadeiros e irão aparecer na lista final
+    }).toList();
+  }
 
   _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
@@ -117,43 +113,55 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
     //widget do tipo statefull e tem método estático chamado of
   }
+
   // método para deletar as transações
   _removeTransaction(String id) {
     setState(() {
-      _transactions.removeWhere((tr) => tr.id == id); 
+      _transactions.removeWhere((tr) => tr.id == id);
     });
   }
 
 //////////// abrir modal para adicionar novas transações
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(_addTransaction); 
-          //Transaction pede um parâmetro
-        },
-      );
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+        //Transaction pede um parâmetro
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Despesas Pessoais'),
+    final appBar = AppBar(
+        title: Text('Despesas Pessoais'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _openTransactionFormModal(context),
           )
         ],
-      ),
+      ); 
+
+    final availabelHeight = MediaQuery.of(context).size.height - 
+      appBar.preferredSize.height - 
+      MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction),
+            Container(
+              height: availabelHeight * 0.4,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: availabelHeight * 0.6,
+              child: TransactionList(_transactions, _removeTransaction),
+            ),
           ],
         ),
       ),
