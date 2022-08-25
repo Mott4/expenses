@@ -9,7 +9,9 @@ class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
 
 //passar para um contrutor e para calcular um valor total
-  Chart(this.recentTransaction);
+  Chart(this.recentTransaction) {
+    print('Constructor Chart');
+  }
 
   List<Map<String, dynamic>> get groupedTransactions {
     return List.generate(7, (index) {
@@ -48,7 +50,10 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'build() Chart'); // para ver a ordem que é chamados esses métodos builds
     return Card(
+      color: Colors.purple, //cor da barrinha
       elevation: 6,
       margin: EdgeInsets.all(20),
       ///// padding para dar um espaçamento das bordas dos elementos
@@ -63,7 +68,8 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: tr['day'].toString(),
                 value: double.parse(tr['value'].toString()),
-                percentage: _weekTotalValue == 0 ? 0 : tr['value'] / _weekTotalValue,
+                percentage:
+                    _weekTotalValue == 0 ? 0 : tr['value'] / _weekTotalValue,
               ),
             );
           }).toList(),
