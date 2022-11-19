@@ -1,16 +1,23 @@
-# expenses
+# Olá, seja bem vindo.👋
 
-Projeto em Flutter para controle de Despesas Pessoais. Meu 1° Projeto. 
+# Curso
+💻 App desenvolvido durante o curso de FLUTTER da COD3R instruído pelo professor Leonardo Moura Leitão. Aqui você poderá ver minhas competências e o que aprendi durante o período de aprendizado no curso. Espero que goste!
 
-## Getting Started
+Leonardo Moura na Udemy: https://www.udemy.com/user/leonardomouraleitao/
+---------------------------------------------------------------------------
+Leonardo Moura no Linkedin: https://www.linkedin.com/in/leonardo-leit%C3%A3o-8a5813186/
+---------------------------------------------------------------------------
+Curso: https://www.udemy.com/course/curso-flutter/
+---------------------------------------------------------------------------
 
-This project is a starting point for a Flutter application.
+# Sobre * EXPENSES *
+📱Projeto em Flutter para controle de Despesas Pessoais.
 
-A few resources to get you started if this is your first Flutter project:
+# Escopo
+📚 Neste curso, eu vou ter a oportunidade de aprender a criar um App com funcionalidades avançadas utilizando o Framework Flutter. Para Gestão de Estado local e global irei usar o MobX, Provider. Além disso, irei aprender a realizar requisições HTTP com Flutter e a biblioteca DIO, comunicação com API e carregar Widgets dependendo do usuário logado em Flutter. Para autenticação, irei tentar usar o Firebase com o servidor.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Foco
+😊 O curso é focado no desenvolvimento de vários Apps com foco no aprendizado em Responsividade, MobX, Navegação e Múltiplas Telas, Gerenciamento de Estado, Requisições HTTP, Autenticação, Animações, Firebase, Publicação de Aplicativos e dart básico/intermédiario. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Imagens
+📷 Neste momento, eu não possuo imagens, no entanto, em breve irei disponibilizar.
